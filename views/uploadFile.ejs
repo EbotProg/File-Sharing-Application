@@ -1,0 +1,37 @@
+<%- include('header') -%>
+
+<div class="reg-title d-flex justify-content-center align-items-center bg-dark h-20">
+    <h1 class="text-white">File Sharing Application</h1>
+</div>
+
+<div class="text-center py-5">
+    <div class="upload-div container border p-3">
+        <div class="title">
+            <h2 class="font-weight-bold">Upload Your File</h2>
+        </div>
+
+        <% if(locals.success){ %>
+            <p class="alert alert-success" role="alert">Upload successful</p>
+            <a href="<%= link %>"><%= link %></a>
+        <% } %>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="row gy-3 d-flex flex-column">
+
+                <div class="form-group d-flex flex-column">
+                    <label for="password" class="align-self-start">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="password" >
+                </div>
+                <div class="form-group d-flex flex-column">
+                    <label for="file" class="align-self-start">Choose file</label>
+                    <input type="file" class="form-control" name="file" id="file">
+                </div>
+                <button type="submit" class="btn rounded-pill btn-primary w-50 align-self-center">Upload file</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+
+<%- include('footer') -%>

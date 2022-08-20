@@ -1,0 +1,33 @@
+<%- include('header') -%>
+<div class="reg-title d-flex justify-content-center align-items-center bg-dark h-20">
+    <h1 class="text-white">File Sharing Application</h1>
+</div>
+
+<div class="text-center py-5">
+    <div class="container border w-25 p-3">
+        <div class="title">
+            <h2 class="font-weight-bold">Download Your File</h2>
+        </div>
+        <% if(locals.err){ %>
+            <p class="alert alert-danger">Incorrect password</p>
+        <% } %>
+        <% if(locals.passwordIsEmpty == true){ %>
+            <p class="alert alert-danger">No password entered!</p>
+        <% } %>
+        <% if(locals.passwordIsInvalid == true){ %>
+            <p class="alert alert-danger">Invalid password</p>
+        <% } %>
+        <form method="post">
+            <div class="row gy-2 d-flex flex-column">
+                <div class="form-group d-flex flex-column">
+                    <label for="password" class="align-self-start">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="password" >
+                </div>
+                <button type="submit" class="btn rounded-pill btn-primary w-50 align-self-center">Download</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<%- include('footer') -%> 

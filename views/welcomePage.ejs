@@ -1,0 +1,25 @@
+<%- include('header') -%>
+
+<div class="reg-title d-flex justify-content-center align-items-center bg-dark h-20">
+    <h1 class="text-white">File Sharing Application</h1>
+</div>
+
+<div class="text-center py-3">
+    <div class="container bg-light p-5 welcome-div">
+        <div class="title font-weight-bold">
+            <h1>Welcome To Your File Sharing Application <%= locals.username %></h1>
+        </div>
+        <div class="desc">
+            <p>Share files with friends and Folks</p>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-column align-items-center justify-content-center py-5">
+    <div class="row d-grid gy-4 py-5 d-flex flex-column align-items-center justify-content-center">
+        <a href="<%= locals.link %>" class="btn btn-success btn-lg btn-block">Upload</a>
+        <a class="btn btn-danger btn-lg btn-block">Exit</a>
+    </div>
+    
+</div>
+
+<%- include('footer') -%>
