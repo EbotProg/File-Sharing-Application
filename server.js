@@ -5,8 +5,17 @@ const bcrypt = require('bcrypt');
 const path = require('path');
 const multer = require('multer');
 const { ObjectId } = require('mongodb');
-// const ncp = require('node-clipboardy');
 const nodemailer = require('nodemailer');
+
+//test
+// import express from 'express'
+// const app = express();
+// import { connectToDb, getDb } from './db.js'
+// import bcrypt from 'bcrypt'
+// import path from 'path'
+// import multer from 'multer'
+// import { ObjectId } from 'mongodb'
+// import nodemailer from 'nodemailer'
 
 const upload = multer({ dest: 'uploads'})
 
@@ -218,5 +227,8 @@ app.post('/file/:id', (req, res)=>{
 })
 
 
-
+//share page route
+app.get('/share', (req, res)=>{
+  res.render('share', {title: 'Share'});
+})
 

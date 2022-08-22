@@ -18,3 +18,9 @@ height: 5rem;
 .alert{
     padding: 0.3rem;
 }
+
+.share-btn,
+.copy-btn{
+    padding: 0.2rem;
+    width: 5rem;
+}
