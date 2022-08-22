@@ -9,8 +9,11 @@
             <h2 class="font-weight-bold">Share with a friend</h2>
             <p class="alert alert-info">Go back and copy link</p>
         </div>
+        <% if(locals.success == true){%>
+            <p class="alert alert-success">Email sent:)</p>
+        <% } %>
       
-        <form action="/shareInfo" method="post">
+        <form method="post">
             <div class="row gy-2 d-flex flex-column">
                 <div class="form-group d-flex flex-column">
                     <label for="downloadPage" class="align-self-start">Paste URL</label>

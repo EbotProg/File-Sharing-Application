@@ -7,15 +7,6 @@ const multer = require('multer');
 const { ObjectId } = require('mongodb');
 const nodemailer = require('nodemailer');
 
-//test
-// import express from 'express'
-// const app = express();
-// import { connectToDb, getDb } from './db.js'
-// import bcrypt from 'bcrypt'
-// import path from 'path'
-// import multer from 'multer'
-// import { ObjectId } from 'mongodb'
-// import nodemailer from 'nodemailer'
 
 const upload = multer({ dest: 'uploads'})
 
@@ -41,7 +32,6 @@ connectToDb((err)=>{
  db = getDb();
 }
 })
-
 
 
 
@@ -232,3 +222,45 @@ app.get('/share', (req, res)=>{
   res.render('share', {title: 'Share'});
 })
 
+
+
+//post the shared file link
+app.post('/share', (req, res)=>{
+   
+  const shareInfo = {
+    email: req.body.email,
+    link: req.body.downloadPage
+  }
+  
+//nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'achaleebotoma2002@gmail.com',
+    pass: 'jhoxlbxfdqzaqgww'
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+})
+
+const mailOptions = {
+  from: 'achaleebotoma2002@gmail.com',
+  to: shareInfo.email,
+  subject: 'Shared File',
+  html: `<p>Click this link<\p>
+         <a href="${shareInfo.link}">${shareInfo.link}<\a>
+         <p>to download file<\p
+        `
+}
+
+
+transporter.sendMail(mailOptions, (err, info)=>{
+  if(err) console.log(err);
+  else{
+    res.render('share', {success: true, title: "Share"});
+    console.log("Email sent"+ info.response);
+  }
+})
+
+})
