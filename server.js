@@ -158,15 +158,20 @@ app.post('/login', (req, res)=>{
 
 //
 
-// file upload route
+// route gotten when upload button on welcome page is clicked
 app.get('/fileUpload', (req, res)=>{
   res.render('uploadFile', {title: 'File Upload'});
 })
 
-
-//post request for the files
+const passwordFieldIsEmpty = {
+  value: false
+}
+// upload info is posted to this url when the upload button in the upload page is clicked
 app.post('/upload', upload.single('file'), async (req, res)=>{
 
+if(req.body.password == null || req.body.password == ""){
+passwordFieldIsEmpty.value = true;
+}
    let fileInfo = {
     password: await bcrypt.hash(req.body.password, 10),
     filePath: req.file.path,
@@ -186,16 +191,21 @@ app.post('/upload', upload.single('file'), async (req, res)=>{
 })
 
 
-// route which points to download page
+// this route is gotten when the link is clicked
 app.get('/file/:id', (req, res)=>{
+ 
   res.render('download', {title: 'Download'});
+
+  
 })
 
+// download info is posted to this route when the download button in the download page is clicked
 app.post('/file/:id', (req, res)=>{
 
-  if(req.body.password == null){
-    res.render('download', {title: "Download", passwordIsEmpty: true})
-  }
+//  if(passwordFieldIsEmpty.value == true){
+//   res.download(result.filePath, result.originalName);
+//   return;
+//  }
 
   db.collection('files')
   .findOne({_id: ObjectId(req.params.id)})
@@ -212,7 +222,7 @@ app.post('/file/:id', (req, res)=>{
     }
   })
   .catch(err=>{
-    res.json({err: err});
+    res.json({err: 'id not recognized'});
   })
 })
 
